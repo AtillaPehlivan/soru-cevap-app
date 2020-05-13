@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobx/mobx.dart';
 
 part 'user.g.dart';
@@ -7,7 +8,6 @@ enum Status { Uninitialized, Authenticated, Authenticating, Unauthenticated }
 class User = _User with _$User;
 
 abstract class _User with Store {
-
   @observable
   String name = "";
 
@@ -17,10 +17,11 @@ abstract class _User with Store {
   @observable
   String token = "";
 
+  @observable
+  FirebaseUser firebaseUser;
+
   @action
-  void setUser(String name, String email, String token) {
-    this.name = name;
-    this.email = email;
-    this.token = token;
+  void setUser(FirebaseUser user) {
+    this.firebaseUser = user;
   }
 }

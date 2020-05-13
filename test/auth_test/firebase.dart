@@ -10,7 +10,15 @@ import 'package:sorucevap/store/user.dart';
 
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
 
-class MockFirebaseUser extends Mock implements FirebaseUser {}
+class MockFirebaseUser extends Mock implements FirebaseUser {
+  @override
+  // TODO: implement email
+  String get email => "test@test.com";
+
+  @override
+  // TODO: implement displayName
+  String get displayName => "test";
+}
 
 class MockAuthResult extends Mock implements AuthResult {
   MockAuthResult({@required this.fUser});
@@ -24,6 +32,7 @@ class MockAuthResult extends Mock implements AuthResult {
 
 void main() {
   setupLocator();
+
   User _userStore = GetIt.I.get<User>();
 
   group("test firebase auth", () {
@@ -33,14 +42,36 @@ void main() {
 
     final Auth _auth = Auth(firebaseAuth: firebaseAuthMock);
 
-    test("test login with email and password", () async {
+    test("test login in with email and password", () async {
       when(firebaseAuthMock.signInWithEmailAndPassword(email: "email", password: "password")).thenAnswer((_) {
+        _userStore.email = "email";
+
         return Future<MockAuthResult>.value(authResultMock);
       });
 
       expect(await _auth.signInWithEmailPassword("email", "password"), firebaseUserMock);
+      expect(_userStore.email, "email");
 
       verify(firebaseAuthMock.signInWithEmailAndPassword(email: "email", password: "password")).called(1);
+
     });
+
+    test("test register in with email and password", () async {
+      when(firebaseAuthMock.createUserWithEmailAndPassword(email: "create_email", password: "create_password")).thenAnswer((_) {
+        _userStore.email = "create_email";
+        return Future<MockAuthResult>.value(authResultMock);
+      });
+
+      expect(await _auth.createWithEmailAndPassword("create_email", "create_password"), firebaseUserMock);
+      expect(_userStore.email, "create_email");
+
+      verify(firebaseAuthMock.createUserWithEmailAndPassword(email: "create_email", password: "create_password")).called(1);
+
+
+    });
+
+
+
+
   });
 }
