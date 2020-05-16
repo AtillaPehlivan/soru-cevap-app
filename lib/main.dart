@@ -13,8 +13,9 @@ import 'package:sorucevap/store/user.dart';
 import 'constants/strings.dart';
 import 'routes.dart';
 
-void main() {
-  setupLocator();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupLocator();
   runApp(Main());
 }
 

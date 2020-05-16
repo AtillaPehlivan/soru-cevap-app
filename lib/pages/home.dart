@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:sorucevap/service/auth/firebase_auth.dart';
+import 'package:sorucevap/service/local/local_storage.dart';
 import 'package:sorucevap/store/theme/theme.dart';
 import 'package:sorucevap/store/user.dart';
 
@@ -72,6 +73,11 @@ class _HomeState extends State<Home> {
               Observer(builder: (context) {
                 return Switch(value: _themeStore.isDark, onChanged: (data) => {_themeStore.toggleTheme()});
               }),
+              Text("DarkMode : " + _themeStore.isDark.toString()),
+              RaisedButton(
+                onPressed: () => Navigator.of(context).pushNamed("/tour"),
+                child: Text("Go Tour"),
+              )
             ],
           ),
         ),
