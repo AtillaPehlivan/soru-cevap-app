@@ -26,6 +26,7 @@ dependencies:
   mobx: ^1.1.1
   provider: ^4.0.5+1
   get_it: ^4.0.2
+  progress_dialog: ^1.2.2
 
 
 
@@ -61,22 +62,15 @@ flutter:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware.
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+  fonts:
+    - family: Oswald
+      fonts:
+        - asset: assets/fonts/oswald/Oswald-Bold.ttf
+        - asset: assets/fonts/oswald/Oswald-ExtraLight.ttf
+        - asset: assets/fonts/oswald/Oswald-Light.ttf
+        - asset: assets/fonts/oswald/Oswald-Medium.ttf
+        - asset: assets/fonts/oswald/Oswald-Regular.ttf
+        - asset: assets/fonts/oswald/Oswald-SemiBold.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

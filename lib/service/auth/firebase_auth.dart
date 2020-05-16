@@ -18,8 +18,8 @@ class Auth {
   Future<bool> signInWithEmailPassword(String email, String password) async {
     try {
       AuthResult _result = await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-
-      if (_result.user != null) return false;
+      print(_result);
+      if (_result.user == null) return false;
 
       userStore.setUser(_result.user);
 

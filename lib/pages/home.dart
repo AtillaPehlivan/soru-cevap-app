@@ -46,17 +46,18 @@ class _HomeState extends State<Home> {
                   return Text(_userStore.firebaseUser.email);
                 },
               ),
-              RaisedButton(
-                child: Text("Login"),
-                onPressed: () {
-                  Navigator.of(context).pushNamed("/login");
-                },
-              ),
+              _userStore.firebaseUser == null
+                  ? RaisedButton(
+                      child: Text("Login"),
+                      onPressed: () {
+                        Navigator.of(context).pushNamed("/login");
+                      },
+                    )
+                  : SizedBox(),
               RaisedButton(
                 child: Text("Sign Out"),
                 onPressed: () async {
                   await _authService.signOut();
-                  Navigator.of(context).pushReplacementNamed("/login");
                 },
               ),
               RaisedButton(
@@ -68,9 +69,9 @@ class _HomeState extends State<Home> {
                   print(tkn.token);
                 },
               ),
-              Observer(builder: (context){
+              Observer(builder: (context) {
                 return Switch(value: _themeStore.isDark, onChanged: (data) => {_themeStore.toggleTheme()});
-              })
+              }),
             ],
           ),
         ),

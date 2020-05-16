@@ -5,7 +5,8 @@ import 'colors.dart';
 import 'font_family.dart';
 
 final ThemeData themeData = new ThemeData(
-    fontFamily: FontFamily.productSans,
+
+    fontFamily: FontFamily.oswald,
     brightness: Brightness.light,
     primarySwatch: MaterialColor(AppColors.orange[500].value, AppColors.orange),
     primaryColor: AppColors.orange[500],
@@ -16,10 +17,12 @@ final ThemeData themeData = new ThemeData(
     accentColorBrightness: Brightness.light);
 
 final ThemeData themeDataDark = ThemeData(
-  fontFamily: FontFamily.productSans,
+  fontFamily: FontFamily.oswald,
   brightness: Brightness.dark,
-  primaryColor: AppColors.orange[500],
+  primaryColorDark: AppColors.orange[500],
   primaryColorBrightness: Brightness.dark,
+
   accentColor: AppColors.orange[500],
   accentColorBrightness: Brightness.dark,
+  buttonColor: Colors.grey
 );
