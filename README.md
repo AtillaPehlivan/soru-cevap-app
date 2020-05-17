@@ -1,5 +1,8 @@
 # sorucevap
 
+# soru-cevap-app
+Soru Cevap Uygulaması - Flutter
+
 A new Flutter project.
 
 ## Getting Started
