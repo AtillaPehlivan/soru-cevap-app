@@ -29,6 +29,7 @@ dependencies:
   progress_dialog: ^1.2.2
   hive: ^1.4.1+1
   path_provider: ^1.6.8
+  firebase_messaging: ^6.0.15
 
 
 
