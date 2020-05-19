@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +30,8 @@ class _HomeState extends State<Home> {
     super.didChangeDependencies();
   }
 
+  int _value = 1;
+
   @override
   Widget build(BuildContext context) {
     _userStore = Provider.of<User>(context);
@@ -41,6 +44,8 @@ class _HomeState extends State<Home> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              LinearProgressIndicator(),
+              RefreshProgressIndicator(strokeWidth: 3),
               Text("Home"),
               Observer(
                 builder: (context) {
@@ -77,7 +82,53 @@ class _HomeState extends State<Home> {
               RaisedButton(
                 onPressed: () => Navigator.of(context).pushNamed("/tour"),
                 child: Text("Go Tour"),
-              )
+              ),
+              Container(width: 200, child: OutlineButton(onPressed: () => {}, child: Text("atilla"))),
+              Chip(
+                avatar: CircleAvatar(
+                  backgroundColor: Colors.grey.shade800,
+                  child: Text('AB'),
+                ),
+                deleteIcon: Icon(Icons.delete),
+                onDeleted: () => {},
+                deleteButtonTooltipMessage: "Saa",
+                label: Text('Aaron Burr'),
+              ),
+              InputChip(
+                  avatar: CircleAvatar(
+                    backgroundColor: Colors.grey.shade800,
+                    child: Text('AB'),
+                  ),
+                  label: Text('Aaron Burr'),
+                  onPressed: () {
+                    print('I am the one thing in life.');
+                  }),
+              Wrap(
+                children: List<Widget>.generate(
+                  3,
+                  (int index) {
+                    return ChoiceChip(
+                      label: Text('Item $index'),
+                      selected: _value == index,
+                      onSelected: (bool selected) {
+                        setState(() {
+                          _value = selected ? index : null;
+                        });
+                      },
+                    );
+                  },
+                ).toList(),
+              ),
+              ActionChip(
+                  avatar: CircleAvatar(
+                    backgroundColor: Colors.grey.shade800,
+                    child: Text('AB'),
+                  ),
+                  label: Text('Aaron Burr'),
+                  onPressed: () {
+                    print("If you stand for nothing, Burr, what’ll you fall for?");
+                  }),
+             
             ],
           ),
         ),
