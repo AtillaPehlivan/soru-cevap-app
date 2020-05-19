@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:sorucevap/service/auth/firebase_auth.dart';
@@ -38,9 +39,10 @@ class _HomeState extends State<Home> {
     _authService = Provider.of<Auth>(context);
     _themeStore = Provider.of<ThemeStore>(context);
 
+    
     return Scaffold(
-      body: Center(
-        child: Container(
+      body: SingleChildScrollView(
+        child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -128,7 +130,8 @@ class _HomeState extends State<Home> {
                   onPressed: () {
                     print("If you stand for nothing, Burr, what’ll you fall for?");
                   }),
-             
+
+
             ],
           ),
         ),

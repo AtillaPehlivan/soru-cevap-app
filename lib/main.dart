@@ -56,10 +56,22 @@ class MainController extends StatelessWidget {
   Widget build(BuildContext context) {
     User _userStore = Provider.of<User>(context);
     return Observer(builder: (context) {
-      if (_userStore.firebaseUser != null) {
-        return Home();
-      } else {
-        return Login();
+      print(_userStore.status);
+      switch (_userStore.status) {
+        case Status.Uninitialized:
+          return Center(child: CircularProgressIndicator());
+          break;
+        case Status.Authenticated:
+          return Home();
+          break;
+        case Status.Authenticating:
+          return Center(child: CircularProgressIndicator(strokeWidth: 5));
+          break;
+        case Status.Unauthenticated:
+          return Login();
+          break;
+        default:
+          return Login();
       }
     });
   }

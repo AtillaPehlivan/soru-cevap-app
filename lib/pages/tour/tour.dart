@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:sorucevap/constants/colors.dart';
-import 'package:sorucevap/constants/widgets.dart';
 
 class TourPage extends StatelessWidget {
   PageController _pageController;
@@ -26,13 +27,11 @@ class TourPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Flexible(
-          flex: 2,
-          child: Icon(
-            Icons.search,
-            size: 200,
-            color: AppColors.orange[600],
-          ),
-        ),
+            flex: 2,
+            child: SvgPicture.asset(
+              "assets/svg/searching.svg",
+              placeholderBuilder: (BuildContext context) => Container(padding: const EdgeInsets.all(30.0), child: const CircularProgressIndicator()),
+            )),
         Flexible(
           child: Text(
             "Birinci Aşama",
@@ -57,14 +56,12 @@ class TourPage extends StatelessWidget {
             child: Center(
               child: Container(
                 width: 200,
-                child: RaisedButton(
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30)), side: BorderSide(color: Colors.white)),
+                child: OutlineButton(
+                  borderSide: BorderSide(color: Colors.white),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
                   textColor: Colors.white,
-                  color: Colors.transparent,
-                  disabledElevation: 0,
                   onPressed: () => {_pageController.animateToPage(1, duration: Duration(milliseconds: 800), curve: Curves.easeInOut)},
-                  child: Text("İlerler"),
+                  child: Text("Devam"),
                 ),
               ),
             ),
@@ -110,14 +107,12 @@ class TourPage extends StatelessWidget {
             child: Center(
               child: Container(
                 width: 200,
-                child: RaisedButton(
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30)), side: BorderSide(color: Colors.white)),
+                child: OutlineButton(
+                  borderSide: BorderSide(color: Colors.white),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
                   textColor: Colors.white,
-                  color: Colors.transparent,
-                  disabledElevation: 0,
                   onPressed: () => {_pageController.animateToPage(2, duration: Duration(milliseconds: 800), curve: Curves.easeInOut)},
-                  child: Text("İlerler"),
+                  child: Text("Devam"),
                 ),
               ),
             ),
@@ -163,12 +158,10 @@ class TourPage extends StatelessWidget {
             child: Center(
               child: Container(
                 width: 200,
-                child: RaisedButton(
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30)), side: BorderSide(color: Colors.white)),
+                child: OutlineButton(
+                  borderSide: BorderSide(color: Colors.white),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
                   textColor: Colors.white,
-                  color: Colors.transparent,
-                  disabledElevation: 0,
                   onPressed: () => {Navigator.of(context).pop()},
                   child: Text("Bitir"),
                 ),

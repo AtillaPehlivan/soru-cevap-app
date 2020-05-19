@@ -18,10 +18,18 @@ abstract class _User with Store {
   String token = "";
 
   @observable
+  Status status = Status.Uninitialized;
+
+  @observable
   FirebaseUser firebaseUser;
 
   @action
   void setUser(FirebaseUser user) {
     this.firebaseUser = user;
+  }
+
+  @action
+  void setStatus(Status newStatus) {
+    this.status = newStatus;
   }
 }

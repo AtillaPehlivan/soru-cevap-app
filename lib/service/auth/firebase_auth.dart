@@ -8,10 +8,15 @@ class Auth {
   final User userStore;
 
   Auth({@required this.firebaseAuth, @required this.userStore}) {
-    firebaseAuth.onAuthStateChanged.listen((onData) {
-      print("state changed");
-      print(onData);
-      userStore.setUser(onData);
+    userStore.setStatus(Status.Authenticating);
+    firebaseAuth.onAuthStateChanged.listen((fUser) {
+      print("Auth state changed in firebase_auth.dart");
+      if (fUser == null) {
+        userStore.setStatus(Status.Unauthenticated);
+      } else {
+        userStore.setUser(fUser);
+        userStore.setStatus(Status.Authenticated);
+      }
     });
   }
 
@@ -38,7 +43,6 @@ class Auth {
     } catch (error) {
       print(error.message);
       return false;
-
     }
   }
 
