@@ -113,7 +113,9 @@ class LoginView extends LoginViewModel {
                           width: 10,
                         ),
                         InkWell(
-                          onTap: () => {},
+                          onTap: () => {
+                            Navigator.pushNamed(context, "/signup")
+                          },
                           borderRadius: BorderRadius.all(Radius.circular(30)),
                           child: Container(
                             padding: const EdgeInsets.all(5),
