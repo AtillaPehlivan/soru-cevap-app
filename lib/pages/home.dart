@@ -39,7 +39,6 @@ class _HomeState extends State<Home> {
     _authService = Provider.of<Auth>(context);
     _themeStore = Provider.of<ThemeStore>(context);
 
-    
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -84,6 +83,12 @@ class _HomeState extends State<Home> {
               RaisedButton(
                 onPressed: () => Navigator.of(context).pushNamed("/tour"),
                 child: Text("Go Tour"),
+              ),
+              RaisedButton(
+                color: Colors.red,
+                textColor: Colors.yellow,
+                onPressed: () => Navigator.of(context).pushNamed("/profile"),
+                child: Text("Go Profile"),
               ),
               Container(width: 200, child: OutlineButton(onPressed: () => {}, child: Text("atilla"))),
               Chip(
@@ -130,8 +135,6 @@ class _HomeState extends State<Home> {
                   onPressed: () {
                     print("If you stand for nothing, Burr, what’ll you fall for?");
                   }),
-
-
             ],
           ),
         ),

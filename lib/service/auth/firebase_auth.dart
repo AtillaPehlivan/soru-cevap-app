@@ -9,7 +9,8 @@ class Auth {
 
   Auth({@required this.firebaseAuth, @required this.userStore}) {
     userStore.setStatus(Status.Authenticating);
-    firebaseAuth.onAuthStateChanged.listen((fUser) {
+    firebaseAuth.onAuthStateChanged.listen((fUser) async {
+      await Future.delayed(Duration(seconds: 1));
       print("Auth state changed in firebase_auth.dart");
       if (fUser == null) {
         userStore.setStatus(Status.Unauthenticated);
@@ -35,6 +36,7 @@ class Auth {
       return false;
     }
   }
+
 
   Future<bool> signOut() async {
     try {

@@ -5,7 +5,13 @@ part 'user.g.dart';
 
 enum Status { Uninitialized, Authenticated, Authenticating, Unauthenticated }
 
-class User = _User with _$User;
+class User extends _User with _$User {
+  static User _instance = new User._();
+
+  factory User() => _instance;
+
+  User._();
+}
 
 abstract class _User with Store {
   @observable

@@ -1,3 +1,4 @@
+import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,13 +12,14 @@ class TourPage extends StatelessWidget {
   Widget build(BuildContext context) {
     _pageController = new PageController();
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: Text("Tour Page")),
-      body: PageView(
-        physics: NeverScrollableScrollPhysics(),
-        controller: _pageController,
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[tourOne(), tourTwo(), tourThree(context)],
+      body: SafeArea(
+        child: PageView(
+
+          physics: NeverScrollableScrollPhysics(),
+          controller: _pageController,
+          scrollDirection: Axis.horizontal,
+          children: <Widget>[tourOne(), tourTwo(), tourThree(context)],
+        ),
       ),
     );
   }
@@ -52,7 +54,7 @@ class TourPage extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
                 gradient:
-                    LinearGradient(colors: [AppColors.orange[300], AppColors.orange[900]], begin: Alignment.centerLeft, end: Alignment.centerRight)),
+                    LinearGradient(colors: [Color(0xffFF63A4), Color(0xffFF8962)], begin: Alignment.centerLeft, end: Alignment.centerRight)),
             child: Center(
               child: Container(
                 width: 200,
@@ -60,7 +62,7 @@ class TourPage extends StatelessWidget {
                   borderSide: BorderSide(color: Colors.white),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
                   textColor: Colors.white,
-                  onPressed: () => {_pageController.animateToPage(1, duration: Duration(milliseconds: 800), curve: Curves.easeInOut)},
+                  onPressed: () => {_pageController.nextPage( duration: Duration(milliseconds: 800), curve:Curves.ease)},
                   child: Text("Devam"),
                 ),
               ),
@@ -103,7 +105,7 @@ class TourPage extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
                 gradient:
-                    LinearGradient(colors: [AppColors.orange[300], AppColors.orange[900]], begin: Alignment.centerLeft, end: Alignment.centerRight)),
+                LinearGradient(colors: [Color(0xffFF63A4), Color(0xffFF8962)], begin: Alignment.centerLeft, end: Alignment.centerRight)),
             child: Center(
               child: Container(
                 width: 200,
@@ -154,7 +156,7 @@ class TourPage extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
                 gradient:
-                    LinearGradient(colors: [AppColors.orange[300], AppColors.orange[900]], begin: Alignment.centerLeft, end: Alignment.centerRight)),
+                LinearGradient(colors: [Color(0xffFF63A4), Color(0xffFF8962)], begin: Alignment.centerLeft, end: Alignment.centerRight)),
             child: Center(
               child: Container(
                 width: 200,
