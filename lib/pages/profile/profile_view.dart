@@ -88,7 +88,7 @@ class ProfileView extends ProfileViewModel {
                   children: [
                     Container(child: Center(child: Text("Tab Calendar - developing"))),
                     app(),
-                    Container(child: Text(tabController.index.toString())),
+                    Container(child:Center(child: Text("Tab Event - developing"))),
                   ],
                   controller: tabController,
                 ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:progress_dialog/progress_dialog.dart';
+import 'package:provider/provider.dart';
 import 'package:sorucevap/pages/login/login.dart';
 import 'package:sorucevap/service/auth/firebase_auth.dart';
 
@@ -14,7 +15,7 @@ abstract class LoginViewModel extends State<Login> {
 
   final formKey = GlobalKey<FormState>();
 
-  Auth authService = GetIt.I.get<Auth>();
+  Auth authService;
 
   @override
   void initState() {
@@ -22,6 +23,8 @@ abstract class LoginViewModel extends State<Login> {
   }
 
   void login(BuildContext context) async {
+    authService = Provider.of<Auth>(context, listen: false);
+
     if (!formKey.currentState.validate()) return null;
     _progressDialog = ProgressDialog(context, type: ProgressDialogType.Normal, isDismissible: false);
     _progressDialog.style(message: "Giriş Yapılıyor...", messageTextStyle: normalDialogTextStyle(), progressWidget: CircularProgressIndicator());
@@ -40,6 +43,13 @@ abstract class LoginViewModel extends State<Login> {
       print("login success");
     }
     _progressDialog.hide();
+  }
+
+  void loginWithGoogle(BuildContext context) async {
+    authService = Provider.of<Auth>(context, listen: false);
+
+    await authService.signInWithGoogle();
+
   }
 }
 

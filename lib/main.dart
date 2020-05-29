@@ -49,6 +49,7 @@ class _MainState extends State<Main> {
         child: Observer(
           builder: (context) {
             return MaterialApp(
+
               title: Strings.appName,
               routes: Routes.routes,
               theme: themeData,
@@ -67,7 +68,7 @@ class MainController extends StatelessWidget {
     User _userStore = Provider.of<User>(context);
 
     return Observer(builder: (context) {
-      print(_userStore.status);
+      print(_userStore.status.toString()+" line 72");
 
       switch (_userStore.status) {
         case Status.Uninitialized:

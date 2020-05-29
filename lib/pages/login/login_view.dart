@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sorucevap/constants/helper.dart';
 import 'package:sorucevap/constants/widgets.dart';
 import 'package:sorucevap/pages/login/login_view_model.dart';
-
 
 class LoginView extends LoginViewModel {
   @override
@@ -71,7 +71,7 @@ class LoginView extends LoginViewModel {
                         ),
                       ),
                     ),
-                    Spacer(flex: 2),
+                    Spacer(flex: 1),
                     Container(
                         height: 50,
                         margin: const EdgeInsets.only(right: 30, left: 30),
@@ -88,6 +88,43 @@ class LoginView extends LoginViewModel {
                                   child: Text(
                                     "GİRİŞ YAP",
                                     style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 15),
+                                  )),
+                            ),
+                          ),
+                        )),
+                    SizedBox(height: 10),
+                    Container(
+                        height: 50,
+                        margin: const EdgeInsets.only(right: 30, left: 30),
+                        child: SizedBox(
+                          height: 300,
+                          child: RaisedButton(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
+                            padding: EdgeInsets.all(0),
+                            onPressed: () => {loginWithGoogle(context)},
+                            child: Ink(
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(30.0), color: Colors.white),
+                              child: Container(
+                                  alignment: Alignment.center,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: <Widget>[
+                                      SizedBox(width: 20),
+                                      SvgPicture.asset(
+                                        "assets/svg/google_icon.svg",
+                                        width: 30,
+                                        height: 30,
+                                        fit: BoxFit.contain,
+                                      ),
+                                      SizedBox(width: 20),
+                                      Expanded(
+                                        child: Text(
+                                          "Google ile giriş yap",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w700, fontSize: 16),
+                                        ),
+                                      ),
+                                    ],
                                   )),
                             ),
                           ),
@@ -113,9 +150,7 @@ class LoginView extends LoginViewModel {
                           width: 10,
                         ),
                         InkWell(
-                          onTap: () => {
-                            Navigator.pushNamed(context, "/signup")
-                          },
+                          onTap: () => {Navigator.of(context).pushNamed("/signup")},
                           borderRadius: BorderRadius.all(Radius.circular(30)),
                           child: Container(
                             padding: const EdgeInsets.all(5),

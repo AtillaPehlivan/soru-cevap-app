@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -71,9 +73,7 @@ class _HomeState extends State<Home> {
                 child: Text("get token"),
                 onPressed: () async {
                   IdTokenResult tkn = await _userStore.firebaseUser.getIdToken();
-                  print(tkn.authTime);
-                  print(tkn.claims);
-                  print(tkn.token);
+                  log(tkn.token.toString());
                 },
               ),
               Observer(builder: (context) {

@@ -5,9 +5,12 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
 class LocalStorage {
+
   static LocalStorage _instance = LocalStorage._private();
 
   LocalStorage._private();
+
+  static LocalStorage get instance => _instance;
 
   Box _hiveBox;
 
@@ -32,5 +35,5 @@ class LocalStorage {
     _hiveBox.put("mode", data);
   }
 
-  static LocalStorage get instance => _instance;
+
 }
