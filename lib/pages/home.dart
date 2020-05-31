@@ -42,6 +42,7 @@ class _HomeState extends State<Home> {
     _themeStore = Provider.of<ThemeStore>(context);
 
     return Scaffold(
+
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -72,7 +73,7 @@ class _HomeState extends State<Home> {
               RaisedButton(
                 child: Text("get token"),
                 onPressed: () async {
-                  IdTokenResult tkn = await _userStore.firebaseUser.getIdToken();
+                  IdTokenResult tkn = await _userStore.firebaseUser.getIdToken(refresh: true);
                   log(tkn.token.toString());
                 },
               ),
@@ -90,6 +91,12 @@ class _HomeState extends State<Home> {
                 onPressed: () => Navigator.of(context).pushNamed("/profile"),
                 child: Text("Go Profile"),
               ),
+              RaisedButton(
+                color: Colors.red,
+                textColor: Colors.yellow,
+                onPressed: () => Navigator.of(context).pushNamed("/home"),
+                child: Text("Go home"),
+              ),
               Container(width: 200, child: OutlineButton(onPressed: () => {}, child: Text("atilla"))),
               Chip(
                 avatar: CircleAvatar(
@@ -102,6 +109,7 @@ class _HomeState extends State<Home> {
                 label: Text('Aaron Burr'),
               ),
               InputChip(
+
                   avatar: CircleAvatar(
                     backgroundColor: Colors.grey.shade800,
                     child: Text('AB'),

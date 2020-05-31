@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sorucevap/pages/signup/signup.dart';
 
-import 'pages/home.dart';
+
+import 'pages/home/home.dart';
 import 'pages/login/login.dart';
 import 'pages/profile/profile.dart';
 import 'pages/tour/tour.dart';

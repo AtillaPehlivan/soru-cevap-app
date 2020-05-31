@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sorucevap/service/graphql/hasura.dart';
 import 'package:sorucevap/store/user.dart';
 
 class Auth {
@@ -23,8 +24,11 @@ class Auth {
       } else {
         userStore.setUser(fUser);
         userStore.setStatus(Status.Authenticated);
+
+        await HasuraService.instance.init();
       }
     });
+
   }
 
   Future<bool> signInWithEmailPassword(String email, String password) async {
@@ -81,6 +85,8 @@ class Auth {
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
+
+
 
       AuthResult _result =  await _auth.signInWithCredential(credential);
 

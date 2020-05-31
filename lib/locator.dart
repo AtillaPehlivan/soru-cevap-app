@@ -18,16 +18,10 @@ setupLocator() async {
 //  GetIt.I.registerLazySingleton(() => Auth(firebaseAuth: FirebaseAuth.instance, userStore: GetIt.I.get<User>()));
 
   await LocalStorage.instance.init();
-
-
-
+  
   // Push Notificaitons
   await firebaseMessaging.requestNotificationPermissions();
   final token = await firebaseMessaging.getToken();
   firebaseMessaging.onTokenRefresh.listen((event) {print("fcm token refrest "+event.toString());});
-  print(token);
   await firebaseMessaging.subscribeToTopic("topics-all");
-
-
-
 }

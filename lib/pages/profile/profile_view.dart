@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -33,8 +34,19 @@ class ProfileView extends ProfileViewModel {
                   Container(
                     width: 75,
                     height: 75,
-                    child: CircleAvatar(
-                      backgroundImage: NetworkImage("https://pbs.twimg.com/profile_images/1054800233908047872/cqOL6E_u_bigger.jpg"),
+                    child: Observer(
+                      builder: (context) {
+                        return CachedNetworkImage(
+                          imageUrl: _userStore.firebaseUser.photoUrl ?? 'https://pbs.twimg.com/profile_images/1054800233908047872/cqOL6E_u_bigger.jpg',
+                          placeholder: (context, url) => const CircleAvatar(
+                            radius: 150,
+                          ),
+                          imageBuilder: (context, image) => CircleAvatar(
+                            backgroundImage: image,
+                            radius: 150,
+                          ),
+                        );
+                      },
                     ),
                   ),
                   Align(
@@ -88,7 +100,7 @@ class ProfileView extends ProfileViewModel {
                   children: [
                     Container(child: Center(child: Text("Tab Calendar - developing"))),
                     app(),
-                    Container(child:Center(child: Text("Tab Event - developing"))),
+                    Container(child: Center(child: Text("Tab Event - developing"))),
                   ],
                   controller: tabController,
                 ),
@@ -141,7 +153,7 @@ class ProfileView extends ProfileViewModel {
                   child: ListTile(
                     onTap: () => {print("aaa")},
                     title: Text("Cevaplanan Sorularım"),
-                    leading: Icon(Icons.compare_arrows, color:Theme.of(context).primaryColor),
+                    leading: Icon(Icons.compare_arrows, color: Theme.of(context).primaryColor),
                     trailing: Icon(
                       Icons.arrow_forward_ios,
                       size: 14,

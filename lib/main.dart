@@ -1,16 +1,13 @@
-import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:sorucevap/constants/app_theme.dart';
 import 'package:sorucevap/locator.dart';
 import 'package:sorucevap/pages/home.dart';
 import 'package:sorucevap/pages/login/login.dart';
 import 'package:sorucevap/service/auth/firebase_auth.dart';
-import 'package:sorucevap/service/local/local_storage.dart';
 import 'package:sorucevap/store/theme/theme.dart';
 import 'package:sorucevap/store/user.dart';
 
@@ -18,12 +15,8 @@ import 'constants/strings.dart';
 import 'routes.dart';
 
 void main() async {
-  print(DateTime.now().toString());
   WidgetsFlutterBinding.ensureInitialized();
-//  await setupLocator();
-
   await setupLocator();
-  print(DateTime.now().toString());
 
   runApp(Main());
 }
@@ -40,6 +33,8 @@ class _MainState extends State<Main> {
 
   @override
   Widget build(BuildContext context) {
+
+
     return MultiProvider(
         providers: [
           Provider<User>.value(value: _user),
@@ -49,7 +44,6 @@ class _MainState extends State<Main> {
         child: Observer(
           builder: (context) {
             return MaterialApp(
-
               title: Strings.appName,
               routes: Routes.routes,
               theme: themeData,
@@ -68,7 +62,7 @@ class MainController extends StatelessWidget {
     User _userStore = Provider.of<User>(context);
 
     return Observer(builder: (context) {
-      print(_userStore.status.toString()+" line 72");
+      print(_userStore.status.toString() + " line 72");
 
       switch (_userStore.status) {
         case Status.Uninitialized:

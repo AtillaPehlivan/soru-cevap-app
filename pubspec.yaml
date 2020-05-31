@@ -32,6 +32,9 @@ dependencies:
   firebase_messaging: ^6.0.15
   flutter_svg: ^0.17.4
   google_sign_in: ^4.5.1
+  animations: ^1.0.0+5
+  cached_network_image: ^2.2.0+1
+  hasura_connect:
 
 
 
@@ -66,6 +69,8 @@ flutter:
   assets:
     - assets/svg/searching.svg
     - assets/svg/google_icon.svg
+    - assets/svg/friends.svg
+    - assets/svg/empty.svg
 
   fonts:
     - family: Oswald
