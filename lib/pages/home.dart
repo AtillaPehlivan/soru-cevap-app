@@ -94,7 +94,7 @@ class _HomeState extends State<Home> {
               RaisedButton(
                 color: Colors.red,
                 textColor: Colors.yellow,
-                onPressed: () => Navigator.of(context).pushNamed("/home"),
+                onPressed: () => Navigator.of(context).popAndPushNamed("/home"),
                 child: Text("Go home"),
               ),
               Container(width: 200, child: OutlineButton(onPressed: () => {}, child: Text("atilla"))),

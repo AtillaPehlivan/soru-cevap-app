@@ -28,7 +28,7 @@ class HomeView extends HomeViewModel {
         ),
         floatingActionButton: FloatingActionButton(
           elevation: 3.0,
-          onPressed: () => {},
+          onPressed: () => {handleShowModalBottomSheet(context)},
           child: Icon(
             Icons.add,
             color: Colors.white,
@@ -41,7 +41,7 @@ class HomeView extends HomeViewModel {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Ana Sayfa")),
             BottomNavigationBarItem(icon: Icon(Icons.card_giftcard), title: Text("Hediye")),
-            BottomNavigationBarItem(icon: Icon(Icons.list), title: Text("Sorduğum Sorular")),
+            BottomNavigationBarItem(icon: Icon(Icons.list), title: Text("Sorularım")),
             BottomNavigationBarItem(icon: Icon(Icons.bookmark), title: Text("Kaydettiklerim")),
           ],
           iconSize: 30,

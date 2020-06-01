@@ -18,3 +18,32 @@ const String getUserAskedQuestionsDoc = """
     }
   }
 """;
+
+
+const String getHighLightedDocs = """
+  query {
+        highlighteds(limit: 3) {
+        id
+        image
+        title
+        tag {
+          name
+          id
+        }
+      }
+  }
+""";
+
+const String getSubjectDocs = """
+  query {
+        highlighteds(offset: 3,limit: 3) {
+        id
+        image
+        title
+        tag {
+          name
+          id
+        }
+      }
+  }
+""";
