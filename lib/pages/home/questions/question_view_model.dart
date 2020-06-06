@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sorucevap/store/user.dart';
-
+import 'package:timeago/timeago.dart' as timeAgo;
 import 'question.dart';
 
 abstract class QuestionViewModel extends State<Question> {
@@ -8,7 +8,9 @@ abstract class QuestionViewModel extends State<Question> {
 
   @override
   initState() {
+
     super.initState();
+    timeAgo.setLocaleMessages('tr', timeAgo.TrMessages());
   }
 
   @override

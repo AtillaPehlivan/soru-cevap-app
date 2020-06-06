@@ -5,9 +5,10 @@ class UserAskedQuestion {
   String time;
   String description;
   String status;
+  String image;
   DateTime date;
 
-  UserAskedQuestion({this.id, this.title, this.tag, this.time, this.description, this.status, this.date});
+  UserAskedQuestion({this.id, this.title, this.tag, this.time, this.description, this.status,this.image, this.date});
 
   UserAskedQuestion.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -16,6 +17,7 @@ class UserAskedQuestion {
     time = json['time'];
     description = json['description'];
     status = json['status'];
+    image = json['question']['image'];
     date = DateTime.parse(json['date']);
   }
 
@@ -29,6 +31,7 @@ class UserAskedQuestion {
     data['time'] = this.time;
     data['description'] = this.description;
     data['status'] = this.status;
+    data['image'] = this.image;
     data['date'] = this.date.toString();
     return data;
   }

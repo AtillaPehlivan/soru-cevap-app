@@ -35,6 +35,8 @@ dependencies:
   animations: ^1.0.0+5
   cached_network_image: ^2.2.0+1
   hasura_connect:
+  timeago: ^2.0.26
+  image_picker: ^0.6.7+1
 
 
 

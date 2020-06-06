@@ -5,6 +5,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:sorucevap/model/user/question/question.dart';
 import 'package:sorucevap/store/user.dart';
+import 'package:timeago/timeago.dart' as timeAgo;
 
 import 'question_view_model.dart';
 
@@ -12,6 +13,7 @@ class QuestionView extends QuestionViewModel {
   @override
   Widget build(BuildContext context) {
     userStore = Provider.of<User>(context);
+
     return Scaffold(
         body: RefreshIndicator(
       strokeWidth: 3,
@@ -27,23 +29,27 @@ class QuestionView extends QuestionViewModel {
               return ListView.builder(
                   itemCount: userStore.askedQuestions.length,
                   itemBuilder: (context, index) {
+                    Color statusColor = userStore.askedQuestions[index].status.toString() == "Cevaplandı" ? Colors.green: Theme.of(context).primaryColor;
                     return ListTile(
                       title: Text(userStore.askedQuestions[index].title.toString()),
                       subtitle: Text(userStore.askedQuestions[index].tag.name),
                       trailing: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
-                          Text(userStore.askedQuestions[index].date.hour.toString() + ":" + userStore.askedQuestions[index].date.minute.toString()),
+                          Text(timeAgo.format(userStore.askedQuestions[index].date, locale: 'tr')),
                           Container(
-                            padding: EdgeInsets.all(3),
-                            child: Text(
-                              userStore.askedQuestions[index].status.toString(),
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            color: Theme.of(context).primaryColor,
-                          )
+                              decoration: BoxDecoration(color: statusColor, borderRadius: BorderRadius.all(Radius.circular(10))),
+                              padding: EdgeInsets.all(2),
+                              child: Text(
+                                userStore.askedQuestions[index].status.toString(),
+                                style: TextStyle(color: Colors.white),
+                              ))
                         ],
                       ),
-                      leading: Image(image: Image.network("https://pbs.twimg.com/profile_images/1054800233908047872/cqOL6E_u_bigger.jpg").image),
+
+                      leading: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          child: Image(image: Image.network(userStore.askedQuestions[index].image).image,width: 100,height: 100,fit: BoxFit.cover,)),
                     );
                   });
             }

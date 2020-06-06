@@ -30,7 +30,7 @@ class Main extends StatelessWidget {
     if (subjectList.isNotEmpty) return subjectList;
     log("Called loadSubjectList()");
     var highlighted = await HasuraService.instance.connection.query(getSubjectDocs);
-    (highlighted["data"]["highlighteds"] as List).forEach((data) {
+    (highlighted["data"]["subjects"] as List).forEach((data) {
       this.subjectList.add(Highlighted.fromJson(data));
     });
     return this.subjectList;

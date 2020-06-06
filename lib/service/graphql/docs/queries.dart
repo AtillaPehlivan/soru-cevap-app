@@ -15,14 +15,16 @@ const String getUserAskedQuestionsDoc = """
         tag {
           name
         }
-    }
+        question {
+          image
+        }
+      }
   }
 """;
-
 
 const String getHighLightedDocs = """
   query {
-        highlighteds(limit: 3) {
+        highlighteds {
         id
         image
         title
@@ -34,16 +36,18 @@ const String getHighLightedDocs = """
   }
 """;
 
+
 const String getSubjectDocs = """
-  query {
-        highlighteds(offset: 3,limit: 3) {
+query {
+   subjects {
+      id
+      title
+      tag_id
+      tag {
         id
-        image
-        title
-        tag {
-          name
-          id
-        }
+        name
       }
+      image
+    } 
   }
 """;
