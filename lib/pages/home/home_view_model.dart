@@ -11,6 +11,7 @@ import 'gift/gift.dart';
 import 'home.dart';
 import 'main/main.dart';
 import 'questions/question.dart';
+import 'widgets/send_question.dart';
 
 abstract class HomeViewModel extends State<Home> with TickerProviderStateMixin {
   User userStore;
@@ -23,11 +24,9 @@ abstract class HomeViewModel extends State<Home> with TickerProviderStateMixin {
   List<Widget> bottomNavigationWidgetList = [Main(), Gift(), Question(), BookMark()];
   List<String> pageTitleTexts = ["Bugün", "Arkaşını Davet Et 20 TL Kazan", "Soru Kutusu", "Kitaplığın"];
 
-  HomeViewModel({this.indexFromNavigator = 0}
-      );
+  HomeViewModel({this.indexFromNavigator = 0});
 
-  void handleBottomNavigationBarTapped(BuildContext context, int index
-      ) {
+  void handleBottomNavigationBarTapped(BuildContext context, int index) {
     setState(() {
       currentBottomNavigationIndex = index;
       pageTitle = pageTitleTexts[index];
@@ -48,35 +47,37 @@ abstract class HomeViewModel extends State<Home> with TickerProviderStateMixin {
 
   Future<void> getImageFromCamera(BuildContext context) async {
     String imagePath = await ImageService.instance.getImageFromCamera();
-    if (imagePath.length > 0){
-
-
+    if (imagePath.length > 0) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => SendQuestionView(
+                    image: imagePath,
+                  )));
     }
   }
 
   Future<void> getImageFromGallery(BuildContext context) async {
     String imagePath = await ImageService.instance.getImageFromGallery();
-    if (imagePath.length > 0){
-
-    }
+    if (imagePath.length > 0) {}
   }
 
-  void handleShowModalBottomSheet(BuildContext context
-      ) {
+  void handleShowModalBottomSheet(BuildContext context) {
     showModalBottomSheet(
         context: context,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
-        builder: (con
-            ) {
+        builder: (con) {
           return Container(
               height: 120,
               child: Column(children: <Widget>[
-                ListTile(onTap: () async => {await getImageFromCamera(context)} , title: Text("Kamera"), leading: Icon(Icons.camera_alt, color: Theme
-                    .of(context)
-                    .primaryColor)),
-                ListTile(onTap: () async => await getImageFromGallery(context), title: Text("Galeri"), leading: Icon(Icons.image, color: Theme
-                    .of(context)
-                    .primaryColor)),
+                ListTile(
+                    onTap: () async => {Navigator.pop(context), getImageFromCamera(context)},
+                    title: Text("Kamera"),
+                    leading: Icon(Icons.camera_alt, color: Theme.of(context).primaryColor)),
+                ListTile(
+                    onTap: () async => await getImageFromGallery(context),
+                    title: Text("Galeri"),
+                    leading: Icon(Icons.image, color: Theme.of(context).primaryColor)),
               ]));
         }).whenComplete(() => print("closed"));
   }
