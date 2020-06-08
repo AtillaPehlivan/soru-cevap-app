@@ -97,21 +97,22 @@ class _SendQuestionViewState extends State<SendQuestionView> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   child: Container(
-                      decoration: BoxDecoration(border: Border.all(color: Theme.of(context).primaryColor, width: 5)),
+
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height / 2,
                       child: Image(
                         image: Image.file(File(widget.image)).image,
-                        fit: BoxFit.contain,
+                        fit: BoxFit.cover,
                       )),
                 ),
               ),
               SizedBox(height: 5),
-              TextFormField(
+              TextField(
                 style: TextStyle(fontSize: 20),
                 maxLines: 2,
-                textAlign: TextAlign.center,
-                decoration: InputDecoration.collapsed(hintText: "Mesajınız...", border: OutlineInputBorder()),
+
+                textAlign: TextAlign.start,
+                decoration: InputDecoration(hintText: "Mesajınız...", border: OutlineInputBorder()),
               )
             ],
           ),

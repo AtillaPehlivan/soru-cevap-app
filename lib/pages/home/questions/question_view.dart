@@ -27,43 +27,48 @@ class QuestionView extends QuestionViewModel {
               return Center(child: CircularProgressIndicator());
             } else {
               return ListView.builder(
+
                   itemCount: userStore.askedQuestions.length,
                   itemBuilder: (context, index) {
                     Color statusColor =
                         userStore.askedQuestions[index].status.toString() == "Cevaplandı" ? Colors.green : Theme.of(context).primaryColor;
-                    return ListTile(
-                      title: Text(userStore.askedQuestions[index].title.toString()),
-                      subtitle: Text(userStore.askedQuestions[index].tag.name),
-                      trailing: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: <Widget>[
-                          Text(timeAgo.format(userStore.askedQuestions[index].date, locale: 'tr')),
-                          Container(
-                              decoration: BoxDecoration(color: statusColor, borderRadius: BorderRadius.all(Radius.circular(10))),
-                              padding: EdgeInsets.all(2),
-                              child: Text(
-                                userStore.askedQuestions[index].status.toString(),
-                                style: TextStyle(color: Colors.white),
-                              ))
-                        ],
+                    return InkWell(
+                      onTap: ()=>{},
+                      child: ListTile(
+
+                        title: Text(userStore.askedQuestions[index].title.toString()),
+                        subtitle: Text(userStore.askedQuestions[index].tag.name),
+                        trailing: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: <Widget>[
+                            Text(timeAgo.format(userStore.askedQuestions[index].date, locale: 'tr')),
+                            Container(
+                                decoration: BoxDecoration(color: statusColor, borderRadius: BorderRadius.all(Radius.circular(10))),
+                                padding: EdgeInsets.all(2),
+                                child: Text(
+                                  userStore.askedQuestions[index].status.toString(),
+                                  style: TextStyle(color: Colors.white),
+                                ))
+                          ],
+                        ),
+                        leading: ClipRRect(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            child: Image(
+                              image: Image.network(userStore.askedQuestions[index].image).image,
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                              loadingBuilder: (context, child, ImageChunkEvent loadingProgress) {
+                                if (loadingProgress == null) return child;
+                                return CircularProgressIndicator(
+                                  value: loadingProgress.expectedTotalBytes != null
+                                      ? loadingProgress.cumulativeBytesLoaded /
+                                      loadingProgress.expectedTotalBytes
+                                      : null,
+                                );
+                              },
+                            )),
                       ),
-                      leading: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          child: Image(
-                            image: Image.network(userStore.askedQuestions[index].image).image,
-                            width: 100,
-                            height: 100,
-                            fit: BoxFit.cover,
-                            loadingBuilder: (context, child, ImageChunkEvent loadingProgress) {
-                              if (loadingProgress == null) return child;
-                              return CircularProgressIndicator(
-                                value: loadingProgress.expectedTotalBytes != null
-                                    ? loadingProgress.cumulativeBytesLoaded /
-                                    loadingProgress.expectedTotalBytes
-                                    : null,
-                              );
-                            },
-                          )),
                     );
                   });
             }
