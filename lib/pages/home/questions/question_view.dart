@@ -37,7 +37,7 @@ class QuestionView extends QuestionViewModel {
                       child: ListTile(
 
                         title: Text(userStore.askedQuestions[index].title.toString()),
-                        subtitle: Text(userStore.askedQuestions[index].tag.name),
+                        subtitle: Text(userStore.askedQuestions[index].tag.name.isNotEmpty ? userStore.askedQuestions[index].tag.name.toString():""),
                         trailing: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[

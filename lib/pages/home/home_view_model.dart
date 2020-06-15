@@ -59,7 +59,14 @@ abstract class HomeViewModel extends State<Home> with TickerProviderStateMixin {
 
   Future<void> getImageFromGallery(BuildContext context) async {
     String imagePath = await ImageService.instance.getImageFromGallery();
-    if (imagePath.length > 0) {}
+    if (imagePath.length > 0) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => SendQuestionView(
+                image: imagePath,
+              )));
+    }
   }
 
   void handleShowModalBottomSheet(BuildContext context) {
@@ -75,7 +82,7 @@ abstract class HomeViewModel extends State<Home> with TickerProviderStateMixin {
                     title: Text("Kamera"),
                     leading: Icon(Icons.camera_alt, color: Theme.of(context).primaryColor)),
                 ListTile(
-                    onTap: () async => await getImageFromGallery(context),
+                    onTap: () async => {Navigator.pop(context), getImageFromGallery(context)},
                     title: Text("Galeri"),
                     leading: Icon(Icons.image, color: Theme.of(context).primaryColor)),
               ]));
