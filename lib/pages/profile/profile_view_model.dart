@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sorucevap/pages/profile/profile.dart';
+import 'package:sorucevap/store/theme/theme.dart';
+
 
 abstract class ProfileViewModel extends State<Profile> with SingleTickerProviderStateMixin {
   TabController tabController;
+
+  ThemeStore themeStore;
+
 
   @override
   void initState() {

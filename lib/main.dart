@@ -44,6 +44,7 @@ class _MainState extends State<Main> {
         child: Observer(
           builder: (context) {
             return MaterialApp(
+              debugShowCheckedModeBanner: false,
               title: Strings.appName,
               routes: Routes.routes,
               theme: themeData,

@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sorucevap/model/highlighted.dart';
+import 'package:sorucevap/pages/home/widgets/subject_detail.dart';
 import 'package:sorucevap/service/graphql/docs/queries.dart';
 import 'package:sorucevap/service/graphql/hasura.dart';
 import 'package:sorucevap/store/user.dart';
@@ -83,7 +84,7 @@ class Main extends StatelessWidget {
                                     elevation: 3,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                     child: InkWell(
-                                      onTap: ()=>{},
+                                      onTap: () => {},
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
@@ -186,24 +187,32 @@ class Main extends StatelessWidget {
                                     elevation: 3,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                     child: InkWell(
-                                      onTap: ()=>{},
+                                      onTap: () => {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => SubjectDetail(
+                                                      title: subjectList[index].title,
+                                                      subjectId: subjectList[index].id,
+                                                    )))
+                                      },
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Expanded(
                                               child: CachedNetworkImage(
-                                                imageUrl: subjectList[index].image,
-                                                placeholder: (context, url) => Center(child: const CircularProgressIndicator()),
-                                                imageBuilder: (context, image) => ClipRRect(
-                                                  child: Image(
-                                                    image: image,
-                                                    width: 170,
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                  borderRadius: BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
-                                                ),
-                                              )
-                                            /*ClipRRect(
+                                            imageUrl: subjectList[index].image,
+                                            placeholder: (context, url) => Center(child: const CircularProgressIndicator()),
+                                            imageBuilder: (context, image) => ClipRRect(
+                                              child: Image(
+                                                image: image,
+                                                width: 170,
+                                                fit: BoxFit.cover,
+                                              ),
+                                              borderRadius: BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+                                            ),
+                                          )
+                                              /*ClipRRect(
                                       child: Image.network(
                                         "https://pbs.twimg.com/profile_images/1054800233908047872/cqOL6E_u_bigger.jpg",
                                         fit: BoxFit.cover,
@@ -211,7 +220,7 @@ class Main extends StatelessWidget {
                                       ),
                                       borderRadius: BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
                                   ),*/
-                                          ),
+                                              ),
                                           Expanded(
                                             child: Padding(
                                               padding: const EdgeInsets.only(left: 10),
@@ -237,7 +246,12 @@ class Main extends StatelessWidget {
                                                     ),
                                                   ),
                                                   Container(
-                                                    child: Text(subjectList[index].title),
+                                                    child: Text(
+                                                      subjectList[index].title,
+                                                      style: TextStyle(
+                                                        fontSize: 17,
+                                                      ),
+                                                    ),
                                                     width: 160,
                                                   )
                                                 ],

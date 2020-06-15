@@ -8,16 +8,16 @@ class UserAskedQuestion {
   String image;
   DateTime date;
 
-  UserAskedQuestion({this.id, this.title, this.tag, this.time, this.description, this.status,this.image, this.date});
+  UserAskedQuestion({this.id, this.title, this.tag, this.time, this.description, this.status, this.image, this.date});
 
   UserAskedQuestion.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    title = json['title'];
+    title = json['title'] != null ? json['title'] : "Boş";
     tag = json['tag'] != null ? new Tag.fromJson(json['tag']) : null;
-    time = json['time'];
-    description = json['description'];
+    time = json['time'] != null ? json['time'] : null;
+    description = json['detail'];
     status = json['status'];
-    image = json['question']['image'];
+    image = json['question'] != null ? json['question']['image'] : json['image'];
     date = DateTime.parse(json['date']);
   }
 

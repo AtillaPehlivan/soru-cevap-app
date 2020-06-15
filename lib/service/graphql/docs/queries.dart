@@ -51,3 +51,13 @@ query {
     } 
   }
 """;
+
+const String getSubjectById ="""
+
+query subjects_by_pk(\$id:Int!) {
+  subjects_by_pk(id: \$id) {
+    content
+  }
+}
+
+""";

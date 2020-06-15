@@ -6,12 +6,14 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:sorucevap/pages/profile/profile_view_model.dart';
+import 'package:sorucevap/store/theme/theme.dart';
 import 'package:sorucevap/store/user.dart';
 
 class ProfileView extends ProfileViewModel {
   @override
   Widget build(BuildContext context) {
     User _userStore = Provider.of<User>(context);
+    themeStore = Provider.of<ThemeStore>(context);
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: PreferredSize(
@@ -158,6 +160,16 @@ class ProfileView extends ProfileViewModel {
                       Icons.arrow_forward_ios,
                       size: 14,
                     ),
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5))),
+                  child: CheckboxListTile(
+                    onChanged: (val) => {themeStore.toggleTheme()},
+                    secondary:  Icon(Icons.track_changes,color: Theme.of(context).primaryColor),
+                    title: Text("Karanlık Mod"),
+
+                    value: themeStore.isDark,
                   ),
                 ),
               ],
